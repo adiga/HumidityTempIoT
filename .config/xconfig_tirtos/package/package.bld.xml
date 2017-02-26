@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="xconfig_tirtos" version="" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/cfg/tirtos_pem4.c"/>
+    </sources>
+    <configscripts>
+        <srcFile name="C:/Projects/workspace_ccs/HumidityTempIoT/tirtos.cfg"/>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/cfg/tirtos_pem4.mak" src="package.bld"/>
+        <srcFile name="package/cfg/tirtos_pem4.oem4.dep" src="package/cfg/tirtos_pem4.c"/>
+        <srcFile name="package/cfg/tirtos_pem4.dep" src="package/cfg/tirtos_pem4.cfg"/>
+        <srcFile name="package/cfg/tirtos.xem4.mak" src="package.bld"/>
+        <srcFile name="package/rel/xconfig_tirtos.tar.dep" src="package/rel/xconfig_tirtos.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.arm.elf.M4"
+            version="ti.targets.arm.elf.M4{1,0,16.9,0"
+            rawVersion="16.9.0"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="em4"
+            rootDir="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS"
+            os="undefined"
+            rts="ti.targets.arm.rtsarm">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    <configuration name="tirtos"
+        pname="tirtos.pem4"
+        target="ti.targets.arm.elf.M4"
+        platform="ti.platforms.simplelink:CC3200"
+        profile="release"
+        isPartial="false"
+        xCfgScript="package/cfg/tirtos_pem4.cfg"
+        xCfgPrefix="package/cfg/tirtos_pem4"
+        cfgScript="C:/Projects/workspace_ccs/HumidityTempIoT/tirtos.cfg"
+        cfgArgs="null"
+        />
+    </configurations>
+    <executables>
+    <executable name="tirtos"
+        pname="tirtos.xem4"
+        target="ti.targets.arm.elf.M4"
+        platform="ti.platforms.simplelink:CC3200"
+        profile="release"
+        xCfgScript="package/cfg/tirtos_pem4.cfg"
+        xCfgPrefix="package/cfg/tirtos_pem4"
+        cfgScript="C:/Projects/workspace_ccs/HumidityTempIoT/tirtos.cfg"
+        cfgArgs="null"
+        />
+    </executables>
+    <tests>
+    <test exeName="tirtos.xem4"
+        args=""
+        groupName="tirtos.xem4"
+        refOutput="undefined"
+        refExitCode="0"
+        execArgs=""
+        />
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="xconfig_tirtos"
+        pname="xconfig_tirtos.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>
