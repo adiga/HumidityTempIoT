@@ -94,7 +94,7 @@ void Exosite_disconnect(Exosite_Handle *exo)
 {
     HTTPCli_disconnect(&((*exo)->cli));
     HTTPCli_destruct(&((*exo)->cli));
-    TLS_delete((*exo)->tls);
+    TLS_delete(&((*exo)->tls));
     free(*exo);
     exo = NULL;
 }
