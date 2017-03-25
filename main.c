@@ -35,6 +35,7 @@
  */
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 /* XDCtools Header files */
 #include <xdc/std.h>
@@ -64,7 +65,7 @@
         + sizeof(EXOSITE_TEMP_ALIAS) - 1 + 3 + 3 + 3 + 1)
 
 #define ERROR_SLEEP_MS  (15000)
-#define APP_SLEEP_MS   (60000)
+#define APP_SLEEP_MS    (60000)
 
 #define TASKSTACKSIZE   (4096)
 
@@ -115,12 +116,14 @@ Void humidityTempTask(UArg arg0, UArg arg1)
 
         ret = AdafruitSi7021_readHumidity(i2c, &humidity);
         if (ret < 0) {
+            System_printf("Failed to read humidity - %d\n", ret);
             Task_sleep(ERROR_SLEEP_MS);
             continue;
         }
 
         ret = AdafruitSi7021_readTemperature(i2c, &temperature);
         if (ret < 0) {
+            System_printf("Failed to read temperature - %d\n", ret);
             Task_sleep(ERROR_SLEEP_MS);
             continue;
         }
@@ -131,11 +134,13 @@ Void humidityTempTask(UArg arg0, UArg arg1)
 
         ret = Exosite_send(handle, exositeData, strlen(exositeData));
         if (ret < 0) {
+            System_printf("Failed to send data to Exosite - %d\n", ret);
             Exosite_disconnect(&handle);
             handle = NULL;
             do {
                 Task_sleep(ERROR_SLEEP_MS);
                 handle = Exosite_connect(EXOSITE_CIK, EXOSITE_CERT_DIR);
+                System_printf("Trying to connect to Exosite - 0x%x\n", handle);
             } while (!handle);
         }
 
